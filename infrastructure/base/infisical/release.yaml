@@ -18,24 +18,17 @@ spec:
     infisical:
       enabled: true
       replicaCount: 1
-      autoDatabaseSchemaMigration: true
-      existingSecret: infisical-secrets
+      # References the manually created K8s secret with ENCRYPTION_KEY and AUTH_SECRET
+      kubeSecretRef: infisical-secrets
 
-    # Bundled PostgreSQL for persistence
+    # Bundled PostgreSQL — chart manages the password and templates DB_CONNECTION_URI
     postgresql:
       enabled: true
-      auth:
-        existingSecret: infisical-postgresql
-        secretKeys:
-          adminPasswordKey: password
-          userPasswordKey: password
 
-    # Bundled Redis for caching/queues
+    # Bundled Redis — chart manages the password and templates REDIS_URL
     redis:
       enabled: true
       architecture: standalone
-      auth:
-        existingSecret: infisical-redis
 
     ingress:
       enabled: false
