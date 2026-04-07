@@ -18,6 +18,8 @@ spec:
     infisical:
       enabled: true
       replicaCount: 1
+      autoDatabaseSchemaMigration: true
+      existingSecret: infisical-secrets
 
     # Bundled PostgreSQL for persistence
     postgresql:
@@ -26,6 +28,7 @@ spec:
         existingSecret: infisical-postgresql
         secretKeys:
           adminPasswordKey: password
+          userPasswordKey: password
 
     # Bundled Redis for caching/queues
     redis:
