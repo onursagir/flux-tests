@@ -33,8 +33,6 @@ spec:
       architecture: standalone
       auth:
         existingSecret: infisical-redis
-        secretKeys:
-          password: password
 
     ingress:
       enabled: false
