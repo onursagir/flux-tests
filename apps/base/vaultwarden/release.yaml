@@ -17,6 +17,11 @@ spec:
   values:
     domain: "https://vaultwarden.example.com"
 
+    data:
+      name: "vaultwarden-data"
+      size: "1Gi"
+      path: "/data"
+
     ingress:
       enabled: false
       # Enable and configure once Traefik is running:
