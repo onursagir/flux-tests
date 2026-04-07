@@ -23,11 +23,24 @@ spec:
     # Entrypoints
     ports:
       web:
-        redirectTo:
-          port: websecure
+        middlewares:
+          - name: redirect-to-https
+            namespace: traefik
       websecure:
         tls:
           enabled: true
+
+    # HTTP to HTTPS redirect middleware
+    extraObjects:
+      - apiVersion: traefik.io/v1alpha1
+        kind: Middleware
+        metadata:
+          name: redirect-to-https
+          namespace: traefik
+        spec:
+          redirectScheme:
+            scheme: https
+            permanent: true
 
     # Logs
     logs:
